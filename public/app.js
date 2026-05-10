@@ -17,7 +17,6 @@ const servers = {
   ],
 };
 
-// Added Try/Catch here to handle camera permissions properly
 async function initMedia() {
   try {
     localStream = await navigator.mediaDevices.getUserMedia({

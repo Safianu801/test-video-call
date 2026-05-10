@@ -3,24 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WebRTC Video Call</title>
+    <title>Friendly Video Call</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="container">
-      <h1>WebRTC Video Call</h1>
+    <div class="app-wrapper">
+      <!-- Friendly Header -->
+      <header class="app-header">
+        <h1>Video Call</h1>
+        <p>🔒 End-to-end encrypted</p>
+      </header>
 
-      <div class="videos">
-        <video id="localVideo" autoplay playsinline muted></video>
+      <!-- Video Stage (FaceTime/WhatsApp Layout) -->
+      <div class="video-stage">
+        <!-- Remote User (Fills the screen) -->
         <video id="remoteVideo" autoplay playsinline></video>
+
+        <!-- Local User (Floating Picture-in-Picture) -->
+        <div class="local-video-card">
+          <video id="localVideo" autoplay playsinline muted></video>
+        </div>
       </div>
 
-      <div class="controls">
-        <input type="text" id="roomInput" placeholder="Enter Room ID" />
-        <button id="joinBtn">Join Room</button>
+      <!-- Floating Controls -->
+      <div class="controls-dock">
+        <input type="text" id="roomInput" placeholder="Enter Room ID..." />
+        <button id="joinBtn"><span class="icon">📞</span> Join Call</button>
       </div>
     </div>
 
+    <!-- Scripts (Untouched) -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="app.js"></script>
   </body>

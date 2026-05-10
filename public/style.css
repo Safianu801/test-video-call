@@ -1,49 +1,214 @@
-body {
+/* --- Base Reset & Typography --- */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial;
-  background: #111;
-  color: white;
+  padding: 0;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
 }
 
-.container {
+body {
+  background-color: #f0f2f5; /* Clean WhatsApp Web light gray */
+  color: #1c1e21;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 20px;
+}
+
+/* --- Main App Container --- */
+.app-wrapper {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* --- Header --- */
+.app-header {
   text-align: center;
 }
 
-.videos {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px;
+.app-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 4px;
 }
 
-video {
-  width: 400px;
-  height: 300px;
-  background: black;
-  border-radius: 10px;
+.app-header p {
+  font-size: 0.85rem;
+  color: #65676b;
+  font-weight: 500;
+}
+
+/* --- Video Layout (Picture-in-Picture) --- */
+.video-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #e4e6eb; /* Soft placeholder before video loads */
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* Remote Video (Background) */
+#remoteVideo {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  transform: scaleX(-1); /* Mirrors the local video */
+  background-color: #333; /* Darker bg when active but no feed */
 }
 
-.controls {
-  margin-top: 20px;
+/* Local Video (Floating FaceTime-style widget) */
+.local-video-card {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 22%;
+  min-width: 100px;
+  aspect-ratio: 3 / 4; /* Mobile-style portrait crop for self */
+  background: #000;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 3px solid #ffffff;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  z-index: 10;
+}
+
+.local-video-card:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+}
+
+#localVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1); /* Mirrors the local video naturally */
+}
+
+/* --- Controls (FaceTime blur + WhatsApp green) --- */
+.controls-dock {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 12px;
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(255, 255, 255, 1);
+  width: max-content;
+  max-width: 100%;
 }
 
 input {
-  padding: 10px;
-  width: 200px;
+  padding: 14px 24px;
+  border: none;
+  background-color: #f0f2f5;
+  border-radius: 30px;
+  font-size: 1rem;
+  color: #1c1e21;
+  width: 250px;
+  outline: none;
+  transition: background-color 0.2s ease;
+}
+
+input::placeholder {
+  color: #8d949e;
+}
+
+input:focus {
+  background-color: #e4e6eb;
 }
 
 button {
-  padding: 10px 20px;
-  cursor: pointer;
-  background-color: #4caf50;
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
   border: none;
-  border-radius: 5px;
+  border-radius: 30px;
+  background-color: #25d366; /* WhatsApp Green */
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+button .icon {
+  font-size: 1.1rem;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #20bd5a;
+  transform: scale(1.03);
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+/* --- Friendly Animations --- */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 600px) {
+  body {
+    padding: 10px;
+  }
+
+  .video-stage {
+    /* Change to a taller, phone-like aspect ratio on mobile */
+    aspect-ratio: 3 / 4;
+    border-radius: 20px;
+  }
+
+  .local-video-card {
+    width: 30%;
+    top: 16px;
+    right: 16px;
+    border-radius: 12px;
+    border-width: 2px;
+  }
+
+  .controls-dock {
+    flex-direction: column;
+    width: 100%;
+    border-radius: 24px;
+    padding: 16px;
+    box-sizing: border-box;
+  }
+
+  input {
+    width: 100%;
+    text-align: center;
+  }
+
+  button {
+    width: 100%;
+    justify-content: center;
+  }
 }
