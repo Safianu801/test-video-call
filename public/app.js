@@ -9,10 +9,27 @@ let localStream;
 let peerConnection;
 let roomId;
 
+// const servers = {
+//   iceServers: [
+//     {
+//       urls: "stun:stun.l.google.com:19302",
+//     },
+//   ],
+// };
+
 const servers = {
   iceServers: [
     {
       urls: "stun:stun.l.google.com:19302",
+    },
+
+    {
+      urls: [
+        "turn:free.expressturn.com:3478?transport=udp",
+        "turn:free.expressturn.com:3478?transport=tcp",
+      ],
+      username: "000000002093867496",
+      credential: "43JkbQvWN7aFkIK7vxhfVkwTqTQ=",
     },
   ],
 };
