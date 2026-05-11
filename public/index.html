@@ -8,31 +8,25 @@
   </head>
   <body>
     <div class="app-wrapper">
-      <!-- Friendly Header -->
       <header class="app-header">
         <h1>Video Call</h1>
         <p>🔒 End-to-end encrypted</p>
       </header>
 
-      <!-- Video Stage (FaceTime/WhatsApp Layout) -->
       <div class="video-stage">
-        <!-- Remote User (Fills the screen) -->
         <video id="remoteVideo" autoplay playsinline></video>
 
-        <!-- Local User (Floating Picture-in-Picture) -->
         <div class="local-video-card">
           <video id="localVideo" autoplay playsinline muted></video>
         </div>
       </div>
 
-      <!-- Floating Controls -->
       <div class="controls-dock">
         <input type="text" id="roomInput" placeholder="Enter Room ID..." />
         <button id="joinBtn"><span class="icon">📞</span> Join Call</button>
       </div>
     </div>
 
-    <!-- Scripts (Untouched) -->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
     <script src="app.js"></script>
   </body>

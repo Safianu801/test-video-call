@@ -1,4 +1,3 @@
-/* --- Base Reset & Typography --- */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -9,7 +8,7 @@
 }
 
 body {
-  background-color: #f0f2f5; /* Clean WhatsApp Web light gray */
+  background-color: #f0f2f5;
   color: #1c1e21;
   min-height: 100vh;
   display: flex;
@@ -18,7 +17,6 @@ body {
   padding: 20px;
 }
 
-/* --- Main App Container --- */
 .app-wrapper {
   width: 100%;
   max-width: 900px;
@@ -29,7 +27,6 @@ body {
   animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-/* --- Header --- */
 .app-header {
   text-align: center;
 }
@@ -47,33 +44,30 @@ body {
   font-weight: 500;
 }
 
-/* --- Video Layout (Picture-in-Picture) --- */
 .video-stage {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background-color: #e4e6eb; /* Soft placeholder before video loads */
+  background-color: #e4e6eb;
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }
 
-/* Remote Video (Background) */
 #remoteVideo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  background-color: #333; /* Darker bg when active but no feed */
+  background-color: #333;
 }
 
-/* Local Video (Floating FaceTime-style widget) */
 .local-video-card {
   position: absolute;
   top: 20px;
   right: 20px;
   width: 22%;
   min-width: 100px;
-  aspect-ratio: 3 / 4; /* Mobile-style portrait crop for self */
+  aspect-ratio: 3 / 4;
   background: #000;
   border-radius: 16px;
   overflow: hidden;
@@ -94,10 +88,9 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scaleX(-1); /* Mirrors the local video naturally */
+  transform: scaleX(-1);
 }
 
-/* --- Controls (FaceTime blur + WhatsApp green) --- */
 .controls-dock {
   display: flex;
   align-items: center;
@@ -140,7 +133,7 @@ button {
   padding: 14px 28px;
   border: none;
   border-radius: 30px;
-  background-color: #25d366; /* WhatsApp Green */
+  background-color: #25d366;
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -162,7 +155,6 @@ button:active {
   transform: scale(0.97);
 }
 
-/* --- Friendly Animations --- */
 @keyframes popIn {
   0% {
     opacity: 0;
@@ -174,14 +166,12 @@ button:active {
   }
 }
 
-/* --- Mobile Responsiveness --- */
 @media (max-width: 600px) {
   body {
     padding: 10px;
   }
 
   .video-stage {
-    /* Change to a taller, phone-like aspect ratio on mobile */
     aspect-ratio: 3 / 4;
     border-radius: 20px;
   }
